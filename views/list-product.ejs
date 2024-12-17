@@ -1,0 +1,98 @@
+<%- contentFor('body') -%>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">FASHION SHOP</h1>
+            <p class="lead text-muted mb-0">Welcome to our fashion shop! Discover the latest trends and timeless styles
+                in our collection. From casual wear to formal attire, we have something for every occasion. Shop now and
+                elevate your wardrobe with our exclusive pieces.</p>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-3">
+                <form action="/list-product" method="get">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i>
+                            Categories
+                        </div>
+                        <ul class="list-group category_block">
+                            <% categories.forEach(category=> { %>
+                                <li class="list-group-item">
+                                    <button type="submit" name="category" value="<%= category.id %>" name="category"
+                                        class="btn btn-link">
+                                        <%= category.name %>
+                                    </button>
+                                </li>
+                                <% }) %>
+                        </ul>
+                    </div>
+                    <div class="card bg-light mb-3">
+                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Brands
+                        </div>
+                        <ul class="list-group category_block">
+                            <% brands.forEach(brand=> { %>
+                                <li class="list-group-item">
+                                    <button type="submit" name="brand" value="<%= brand.id %>" name="brand"
+                                        class="btn btn-link">
+                                        <%= brand.name %>
+                                    </button>
+                                </li>
+                                <% }) %>
+                        </ul>
+                    </div>
+                </form>
+                <div class="card">
+                    <div class="card-header bg-primary text-white text-uppercase text-center">
+                        <i class="fa fa-star"></i> Latest Product
+                    </div>
+                    <img class="card-img-top" src="<%= latestProduct.image %>" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title text-center"><a href="/product-detail/<%= latestProduct.id %>"
+                                title="View Product">
+                                <%= latestProduct.name %>
+                            </a>
+                        </h4>
+                        <div>
+                            <p class="btn btn-danger btn-block">
+                                <%= latestProduct.price %> $
+                            </p>
+                        </div>
+                        <div>
+                            <a href="/add-to-cart?id=<%= latestProduct.id %>&isAdd=true"
+                                class="btn btn-success btn-block">Add
+                                to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <% products.forEach(product=> { %>
+                        <div class="col-12 col-md-6 col-lg-4 mb-3">
+                            <div class="card">
+                                <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center"><a href="/product-detail/<%= product.id %>"
+                                            title="View Product">
+                                            <%= product.name %>
+                                        </a>
+                                    </h4>
+                                    <div>
+                                        <p class="btn btn-danger btn-block">
+                                            <%= product.price %> $
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <a href="/add-to-cart?id=<%= product.id %>&isAdd=true"
+                                            class="btn btn-success btn-block">Add
+                                            to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>

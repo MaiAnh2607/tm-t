@@ -1,0 +1,168 @@
+<%- contentFor('body') -%>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">FASHION SHOP PRODUCT</h1>
+            <p class="lead text-muted mb-0">Discover the elegance and style of our exclusive fashion products. Each
+                piece is crafted with attention to detail and designed to make you stand out. Explore our collection and
+                find your perfect look.</p>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <!-- Image -->
+            <div class="col-12 col-lg-6">
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <a href="" data-toggle="modal" data-target="#productModal">
+                            <img class="img-fluid" src="<%= product.image %>" />
+                            <p class="text-center">Zoom</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add to cart -->
+            <div class="col-12 col-lg-6 add_to_cart_block">
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">
+                            <%= product.name %>
+                        </h4>
+                        <p class="price">
+                            <%= product.price %> $
+                        </p>
+                        <form method="get" action="cart.html">
+                            <div class="form-group">
+                                <label>Quantity :</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="quantity-left-minus btn btn-danger btn-number"
+                                            data-type="minus" data-field="quantity" onclick="setQuantity(false)">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control" id="quantity" name="quantity" min="1"
+                                        max="100" value="1">
+                                    <div class="input-group-append">
+                                        <button type="button" class="quantity-right-plus btn btn-success btn-number"
+                                            data-type="plus" data-field="quantity" onclick="setQuantity(true)">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="addProductToCart('<%= product.id %>')"
+                                class="btn btn-success btn-lg btn-block text-uppercase">
+                                <i class="fa fa-shopping-cart"></i> Add To Cart
+                            </button>
+                        </form>
+                        <div class="product_rassurance">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><i class="fa fa-truck fa-2x"></i><br />Fast delivery</li>
+                                <li class="list-inline-item"><i class="fa fa-credit-card fa-2x"></i><br />Secure payment
+                                </li>
+                                <li class="list-inline-item"><i class="fa fa-phone fa-2x"></i><br />+33 1 22 54 65 60
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Description -->
+            <div class="col-12">
+                <div class="card border-light mb-3">
+                    <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i>
+                        Description</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= product.description %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3 mb-4">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-header bg-primary text-white text-uppercase">
+                        <i class="fa fa-trophy"></i> Products you may like
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <% random4Products.forEach(product=> { %>
+                                <div class="col-sm">
+                                    <div class="card">
+                                        <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-center"><a
+                                                    href="/product-detail/<%= product.id %>" title="View Product">
+                                                    <%= product.name %>
+                                                </a>
+                                            </h4>
+                                            <div>
+                                                <p class="btn btn-danger btn-block">
+                                                    <%= product.price %> $
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-success btn-block">Add to cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">
+                        <%= product.name %>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid" src="<%= product.image %>" style="width: 100%" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addProductToCart(id) {
+            const quantity = document.getElementById('quantity').value;
+            if (quantity) {
+                window.location.href = '/add-to-cart?id=' + id + '&quantity=' + quantity + '&isAdd=true';
+            } else {
+                window.location.href = '/add-to-cart?id=' + id + '&isAdd=true';
+            }
+        }
+
+        function setQuantity(isPlus) {
+            const quantity = document.getElementById('quantity');
+            if (isPlus) {
+                quantity.value = parseInt(quantity.value) + 1;
+            } else {
+                quantity.value = parseInt(quantity.value) - 1;
+            }
+        }
+    </script>

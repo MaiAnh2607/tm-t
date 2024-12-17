@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Shop Checkout</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .checkout-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .btn-primary {
+            background-color: #ff7e5f;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #feb47b;
+        }
+
+        .form-control:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 5px rgba(255, 126, 95, 0.5);
+        }
+
+        a {
+            color: #ff7e5f;
+        }
+
+        a:hover {
+            color: #feb47b;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="checkout-container">
+        <h2 class="text-center mb-4">Checkout</h2>
+        <div class="cart-items mb-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item=> { %>
+                        <tr>
+                            <td>
+                                <%= item.name %>
+                            </td>
+                            <td>
+                                <%= item.price %> $
+                            </td>
+                            <td>
+                                <%= item.quantity %>
+                            </td>
+                            <td>
+                                <%= (item.price * item.quantity).toFixed(2) %> $
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <div class="text-right font-weight-bold">
+                Total Price: <%= cart.reduce((total, item)=> total + (item.price * item.quantity), 0).toFixed(2) %> $
+            </div>
+        </div>
+
+        <form action="/checkout" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" name="address" id="address" placeholder="Enter your address">
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" class="form-control" name="cardNumber" id="cardNumber"
+                    placeholder="Enter your card number" pattern="\d{4}-\d{4}-\d{4}-\d{4}"
+                    title="Please enter a valid card number in the format XXXX-XXXX-XXXX-XXXX">
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input type="text" class="form-control" name="expiryDate" id="expiryDate" placeholder="MM/YY"
+                    pattern="(0[1-9]|1[0-2])\/\d{2}" title="Please enter a valid expiry date in the format MM/YY">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Enter your CVV" pattern="\d{3}"
+                    title="Please enter a valid 3-digit CVV">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Checkout</button>
+        </form>
+        <a href="/cart" class="btn btn-secondary btn-block mt-3">Back to Cart</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
