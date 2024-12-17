@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý thương hiệu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table thead th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-sm {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">NA Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/account-management">Quản lý tài khoản</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/product-management">Quản lý sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/brand-management">Quản lý thương hiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/category-management">Quản lý danh mục</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="text-center">Quản lý thương hiệu</h2>
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addBrandModal">Thêm thương hiệu</button>
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên thương hiệu</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% brands.forEach(brand => { %>
+                    <tr>
+                        <td>
+                            <%= brand.id %>
+                        </td>
+                        <td>
+                            <%= brand.name %>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-sm"
+                                onclick="editBrand('<%= brand.id %>', '<%= brand.name %>')">Sửa</button>
+                            <a href="/admin/delete-brand/<%= brand.id %>" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <a href="/" class="btn btn-secondary">Quay lại trang chủ</a>
+        </div>
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if (success) { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Modal Thêm thương hiệu -->
+    <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBrandModalLabel">Thêm thương hiệu mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/add-brand" method="POST">
+                        <div class="form-group">
+                            <label for="brandName">Tên thương hiệu</label>
+                            <input type="text" class="form-control" id="brandName" name="name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sửa thương hiệu -->
+    <div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editBrandModalLabel">Sửa thương hiệu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editBrandForm" action="/admin/edit-brand" method="POST">
+                        <input type="hidden" id="editBrandId" name="id">
+                        <div class="form-group">
+                            <label for="editBrandName">Tên thương hiệu</label>
+                            <input type="text" class="form-control" id="editBrandName" name="name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function editBrand(id, name) {
+            $('#editBrandId').val(id);
+            $('#editBrandName').val(name);
+            $('#editBrandModal').modal('show');
+        }
+    </script>
+</body>
+
+</html>

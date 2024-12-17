@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý danh mục</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table thead th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-sm {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">NA Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/account-management">Quản lý tài khoản</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/product-management">Quản lý sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/brand-management">Quản lý thương hiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/category-management">Quản lý danh mục</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="text-center">Quản lý danh mục</h2>
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">Thêm danh mục</button>
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên danh mục</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% categories.forEach(category => { %>
+                    <tr>
+                        <td>
+                            <%= category.id %>
+                        </td>
+                        <td>
+                            <%= category.name %>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-sm"
+                                onclick="editCategory('<%= category.id %>', '<%= category.name %>')">Sửa</button>
+                            <a href="/admin/delete-category/<%= category.id %>" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <a href="/" class="btn btn-secondary">Quay lại trang chủ</a>
+        </div>
+        <!-- Thêm thông báo lỗi hoặc thành công -->
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if (success) { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Modal Thêm danh mục -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">Thêm danh mục mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/add-category" method="POST">
+                        <div class="form-group">
+                            <label for="categoryName">Tên danh mục</label>
+                            <input type="text" class="form-control" id="categoryName" name="name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sửa danh mục -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Sửa danh mục</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCategoryForm" action="/admin/edit-category" method="POST">
+                        <input type="hidden" id="editCategoryId" name="id">
+                        <div class="form-group">
+                            <label for="editCategoryName">Tên danh mục</label>
+                            <input type="text" class="form-control" id="editCategoryName" name="name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function editCategory(id, name) {
+            $('#editCategoryId').val(id);
+            $('#editCategoryName').val(name);
+            $('#editCategoryModal').modal('show');
+        }
+    </script>
+</body>
+
+</html>

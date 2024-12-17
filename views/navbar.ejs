@@ -41,8 +41,21 @@
                         <a class="nav-link" href="/login">Đăng nhập</a>
                     </li>
                     <% } else { %>
-                        <li>
-                            <span class="nav-link">Xin chào <%= user.name %> <a href="/logout">Đăng xuất</a></span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Xin chào <%= user.name %>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                                <% if (user.role_id===1) { %>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/admin/account-management">Quản lý tài khoản</a>
+                                    <a class="dropdown-item" href="/admin/product-management">Quản lý sản phẩm</a>
+                                    <a class="dropdown-item" href="/admin/brand-management">Quản lý thương hiệu</a>
+                                    <a class="dropdown-item" href="/admin/category-management">Quản lý danh mục</a>
+                                    <% } %>
+                            </div>
                         </li>
                         <% } %>
             </ul>

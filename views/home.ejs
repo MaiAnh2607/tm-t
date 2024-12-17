@@ -48,7 +48,7 @@
                     <div class="card-header bg-success text-white text-uppercase">
                         <i class="fa fa-heart"></i> Sản phẩm hàng đầu
                     </div>
-                    <img class="img-fluid border-0" src="<%= highestPrice.image %>" alt="Card image cap">
+                    <img class="img-fluid border-0" src="<%= highestPrice.image ?? '' %>" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title text-center"><a href="/product-detail/<%= highestPrice.id %>"
                                 title="Xem sản phẩm">

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table thead th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-sm {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">NA Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/account-management">Quản lý tài khoản</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/product-management">Quản lý sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/brand-management">Quản lý thương hiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/category-management">Quản lý danh mục</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="text-center">Quản lý sản phẩm</h2>
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product=> { %>
+                    <tr>
+                        <td>
+                            <%= product.id %>
+                        </td>
+                        <td>
+                            <%= product.name %>
+                        </td>
+                        <td>
+                            <%= product.price %>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-sm"
+                                onclick="editProduct('<%= product.id %>', '<%= product.name %>', '<%= product.price %>')">Sửa</button>
+                            <a href="/admin/delete-product/<%= product.id %>" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <a href="/" class="btn btn-secondary">Quay lại trang chủ</a>
+        </div>
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+                <% if (success) { %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                    <% } %>
+    </div>
+
+    <!-- Modal Thêm sản phẩm -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Thêm sản phẩm mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/add-product" method="POST">
+                        <div class="form-group">
+                            <label for="productName">Tên sản phẩm</label>
+                            <input type="text" class="form-control" id="productName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Giá</label>
+                            <input type="number" class="form-control" id="productPrice" name="price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Mô tả</label>
+                            <textarea class="form-control" id="productDescription" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage">Hình ảnh</label>
+                            <input type="text" class="form-control" id="productImage" name="image" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Danh mục</label>
+                            <select class="form-control" id="productCategory" name="category_id" required>
+                                <% categories.forEach(category=> { %>
+                                    <option value="<%= category.id %>">
+                                        <%= category.name %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productBrand">Thương hiệu</label>
+                            <select class="form-control" id="productBrand" name="brand_id" required>
+                                <% brands.forEach(brand=> { %>
+                                    <option value="<%= brand.id %>">
+                                        <%= brand.name %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sửa sản phẩm -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">Sửa sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm" action="/admin/edit-product" method="POST">
+                        <input type="hidden" id="editProductId" name="id">
+                        <div class="form-group">
+                            <label for="editProductName">Tên sản phẩm</label>
+                            <input type="text" class="form-control" id="editProductName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductPrice">Giá</label>
+                            <input type="number" class="form-control" id="editProductPrice" name="price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductDescription">Mô tả</label>
+                            <textarea class="form-control" id="editProductDescription" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductImage">Hình ảnh</label>
+                            <input type="text" class="form-control" id="editProductImage" name="image" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductCategory">Danh mục</label>
+                            <select class="form-control" id="editProductCategory" name="category_id" required>
+                                <% categories.forEach(category=> { %>
+                                    <option value="<%= category.id %>">
+                                        <%= category.name %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductBrand">Thương hiệu</label>
+                            <select class="form-control" id="editProductBrand" name="brand_id" required>
+                                <% brands.forEach(brand=> { %>
+                                    <option value="<%= brand.id %>">
+                                        <%= brand.name %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function editProduct(id, name, price) {
+            $('#editProductId').val(id);
+            $('#editProductName').val(name);
+            $('#editProductPrice').val(price);
+            $('#editProductModal').modal('show');
+        }
+    </script>
+</body>
+
+</html>
