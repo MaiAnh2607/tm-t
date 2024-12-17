@@ -2,27 +2,27 @@
 
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">NA Store Product</h1>
-            <p class="lead text-muted mb-0">Discover the elegance and style of our exclusive fashion products. Each
-                piece is crafted with attention to detail and designed to make you stand out. Explore our collection and
-                find your perfect look.</p>
+            <h1 class="jumbotron-heading">Sản phẩm NA Store</h1>
+            <p class="lead text-muted mb-0">Khám phá sự thanh lịch và phong cách của các sản phẩm thời trang độc quyền
+                của chúng tôi. Mỗi sản phẩm được chế tác tỉ mỉ và thiết kế để bạn nổi bật. Khám phá bộ sưu tập của chúng
+                tôi và tìm kiếm phong cách hoàn hảo của bạn.</p>
         </div>
     </section>
     <div class="container">
         <div class="row">
-            <!-- Image -->
+            <!-- Hình ảnh -->
             <div class="col-12 col-lg-6">
                 <div class="card bg-light mb-3">
                     <div class="card-body">
                         <a href="" data-toggle="modal" data-target="#productModal">
                             <img class="img-fluid" src="<%= product.image %>" />
-                            <p class="text-center">Zoom</p>
+                            <p class="text-center">Phóng to</p>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Add to cart -->
+            <!-- Thêm vào giỏ hàng -->
             <div class="col-12 col-lg-6 add_to_cart_block">
                 <div class="card bg-light mb-3">
                     <div class="card-body">
@@ -34,7 +34,7 @@
                         </p>
                         <form method="get" action="cart.html">
                             <div class="form-group">
-                                <label>Quantity :</label>
+                                <label>Số lượng :</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <button type="button" class="quantity-left-minus btn btn-danger btn-number"
@@ -54,14 +54,14 @@
                             </div>
                             <button type="button" onclick="addProductToCart('<%= product.id %>')"
                                 class="btn btn-success btn-lg btn-block text-uppercase">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
+                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                             </button>
                         </form>
                         <div class="product_rassurance">
                             <ul class="list-inline">
-                                <li class="list-inline-item"><i class="fa fa-truck fa-2x"></i><br />Fast delivery</li>
-                                <li class="list-inline-item"><i class="fa fa-credit-card fa-2x"></i><br />Secure payment
-                                </li>
+                                <li class="list-inline-item"><i class="fa fa-truck fa-2x"></i><br />Giao hàng nhanh</li>
+                                <li class="list-inline-item"><i class="fa fa-credit-card fa-2x"></i><br />Thanh toán an
+                                    toàn</li>
                                 <li class="list-inline-item"><i class="fa fa-phone fa-2x"></i><br />+33 1 22 54 65 60
                                 </li>
                             </ul>
@@ -73,11 +73,11 @@
         </div>
 
         <div class="row">
-            <!-- Description -->
+            <!-- Mô tả -->
             <div class="col-12">
                 <div class="card border-light mb-3">
                     <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i>
-                        Description</div>
+                        Mô tả</div>
                     <div class="card-body">
                         <p class="card-text">
                             <%= product.description %>
@@ -92,17 +92,17 @@
             <div class="col-sm">
                 <div class="card">
                     <div class="card-header bg-primary text-white text-uppercase">
-                        <i class="fa fa-trophy"></i> Products you may like
+                        <i class="fa fa-trophy"></i> Sản phẩm bạn có thể thích
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <% random4Products.forEach(product=> { %>
                                 <div class="col-sm">
                                     <div class="card">
-                                        <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
+                                        <img class="card-img-top" src="<%= product.image %>" alt="Hình ảnh sản phẩm">
                                         <div class="card-body">
                                             <h4 class="card-title text-center"><a
-                                                    href="/product-detail/<%= product.id %>" title="View Product">
+                                                    href="/product-detail/<%= product.id %>" title="Xem sản phẩm">
                                                     <%= product.name %>
                                                 </a>
                                             </h4>
@@ -112,7 +112,7 @@
                                                 </p>
                                             </div>
                                             <div>
-                                                <button class="btn btn-success btn-block">Add to cart</button>
+                                                <button class="btn btn-success btn-block">Thêm vào giỏ hàng</button>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                     <img class="img-fluid" src="<%= product.image %>" style="width: 100%" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -49,29 +49,30 @@
 
 <body>
     <div class="login-container">
-        <h2 class="text-center mb-4">Login to NA Store</h2>
+        <h2 class="text-center mb-4">Đăng Nhập vào NA Store</h2>
         <form action="/login" method="post">
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username">
+                <label for="username">Tên Đăng Nhập</label>
+                <input type="text" class="form-control" name="username" id="username"
+                    placeholder="Nhập tên đăng nhập của bạn">
                 <span class="text-danger">
                     <%= error.username %>
                 </span>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Mật Khẩu</label>
                 <input type="password" class="form-control" name="password" id="password"
-                    placeholder="Enter your password">
+                    placeholder="Nhập mật khẩu của bạn">
                 <span class="text-danger">
                     <%= error.password %>
                 </span>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
             <span class="text-danger">
                 <%= error.account %>
             </span>
         </form>
-        <p class="text-center mt-3">Don't have an account? <a href="/signup">Sign up now</a></p>
+        <p class="text-center mt-3">Chưa có tài khoản? <a href="/signup">Đăng ký ngay</a></p>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

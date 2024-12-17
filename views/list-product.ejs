@@ -2,10 +2,11 @@
 
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">NA Store</h1>
-            <p class="lead text-muted mb-0">Welcome to our fashion shop! Discover the latest trends and timeless styles
-                in our collection. From casual wear to formal attire, we have something for every occasion. Shop now and
-                elevate your wardrobe with our exclusive pieces.</p>
+            <h1 class="jumbotron-heading"> NA Store</h1>
+            <p class="lead text-muted mb-0">Chào mừng đến với cửa hàng thời trang của chúng tôi! Khám phá những xu hướng
+                mới nhất và phong cách vượt thời gian trong bộ sưu tập của chúng tôi. Từ trang phục thường ngày đến
+                trang phục trang trọng, chúng tôi có mọi thứ cho mọi dịp. Mua sắm ngay và nâng tầm tủ quần áo của bạn
+                với những sản phẩm độc quyền của chúng tôi.</p>
         </div>
     </section>
     <div class="container">
@@ -14,7 +15,7 @@
                 <form action="/list-product" method="get">
                     <div class="card bg-light mb-3">
                         <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i>
-                            Categories
+                            Danh Mục
                         </div>
                         <ul class="list-group category_block">
                             <% categories.forEach(category=> { %>
@@ -28,7 +29,8 @@
                         </ul>
                     </div>
                     <div class="card bg-light mb-3">
-                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Brands
+                        <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Thương
+                            Hiệu
                         </div>
                         <ul class="list-group category_block">
                             <% brands.forEach(brand=> { %>
@@ -44,12 +46,12 @@
                 </form>
                 <div class="card">
                     <div class="card-header bg-primary text-white text-uppercase text-center">
-                        <i class="fa fa-star"></i> Latest Product
+                        <i class="fa fa-star"></i> Sản Phẩm Mới Nhất
                     </div>
-                    <img class="card-img-top" src="<%= latestProduct.image %>" alt="Card image cap">
+                    <img class="card-img-top" src="<%= latestProduct.image %>" alt="Hình ảnh sản phẩm">
                     <div class="card-body">
                         <h4 class="card-title text-center"><a href="/product-detail/<%= latestProduct.id %>"
-                                title="View Product">
+                                title="Xem Sản Phẩm">
                                 <%= latestProduct.name %>
                             </a>
                         </h4>
@@ -60,8 +62,7 @@
                         </div>
                         <div>
                             <a href="/add-to-cart?id=<%= latestProduct.id %>&isAdd=true"
-                                class="btn btn-success btn-block">Add
-                                to cart</a>
+                                class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                 </div>
@@ -71,10 +72,10 @@
                     <% products.forEach(product=> { %>
                         <div class="col-12 col-md-6 col-lg-4 mb-3">
                             <div class="card">
-                                <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
+                                <img class="card-img-top" src="<%= product.image %>" alt="Hình ảnh sản phẩm">
                                 <div class="card-body">
                                     <h4 class="card-title text-center"><a href="/product-detail/<%= product.id %>"
-                                            title="View Product">
+                                            title="Xem Sản Phẩm">
                                             <%= product.name %>
                                         </a>
                                     </h4>
@@ -85,8 +86,7 @@
                                     </div>
                                     <div>
                                         <a href="/add-to-cart?id=<%= product.id %>&isAdd=true"
-                                            class="btn btn-success btn-block">Add
-                                            to cart</a>
+                                            class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
                                     </div>
                                 </div>
                             </div>

@@ -3,8 +3,8 @@
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">NA Store</h1>
-            <p class="lead text-muted mb-0">Discover the latest trends and timeless styles at NA Store. Explore our
-                collection of clothing, accessories, and more.</p>
+            <p class="lead text-muted mb-0">Khám phá những xu hướng mới nhất và phong cách vượt thời gian tại NA Store.
+                Khám phá bộ sưu tập quần áo, phụ kiện và nhiều hơn nữa của chúng tôi.</p>
         </div>
     </section>
     <div class="container">
@@ -35,23 +35,23 @@
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only">Trước</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only">Tiếp theo</span>
                     </a>
                 </div>
             </div>
             <div class="col-12 col-md-3">
                 <div class="card" style="height: 100%;">
                     <div class="card-header bg-success text-white text-uppercase">
-                        <i class="fa fa-heart"></i> Top product
+                        <i class="fa fa-heart"></i> Sản phẩm hàng đầu
                     </div>
                     <img class="img-fluid border-0" src="<%= highestPrice.image %>" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title text-center"><a href="/product-detail/<%= highestPrice.id %>"
-                                title="View Product">
+                                title="Xem sản phẩm">
                                 <%= highestPrice.name %>
                             </a>
                         </h4>
@@ -62,8 +62,7 @@
                         </div>
                         <div>
                             <a href="/add-to-cart?id=<%= highestPrice.id %>&isAdd=true"
-                                class="btn btn-success btn-block">Add to
-                                cart</a>
+                                class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +76,7 @@
             <div class="col-sm">
                 <div class="card">
                     <div class="card-header bg-primary text-white text-uppercase">
-                        <i class="fa fa-star"></i> Last products
+                        <i class="fa fa-star"></i> Sản phẩm mới nhất
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -87,7 +86,7 @@
                                         <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
                                         <div class="card-body">
                                             <h4 class="card-title text-center"><a
-                                                    href="/product-detail/<%= product.id %>" title="View Product">
+                                                    href="/product-detail/<%= product.id %>" title="Xem sản phẩm">
                                                     <%= product.name %>
                                                 </a>
                                             </h4>
@@ -98,7 +97,7 @@
                                             </div>
                                             <div>
                                                 <a href="/add-to-cart?id=<%= product.id %>&isAdd=true"
-                                                    class="btn btn-success btn-block">Add to cart</a>
+                                                    class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -117,7 +116,7 @@
             <div class="col-sm">
                 <div class="card">
                     <div class="card-header bg-primary text-white text-uppercase">
-                        <i class="fa fa-trophy"></i> Products you may like
+                        <i class="fa fa-trophy"></i> Sản phẩm bạn có thể thích
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -127,7 +126,7 @@
                                         <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
                                         <div class="card-body">
                                             <h4 class="card-title text-center"><a
-                                                    href="/product-detail/<%= product.id %>" title="View Product">
+                                                    href="/product-detail/<%= product.id %>" title="Xem sản phẩm">
                                                     <%= product.name %>
                                                 </a>
                                             </h4>
@@ -138,7 +137,7 @@
                                             </div>
                                             <div>
                                                 <a href="/add-to-cart?id=<%= product.id %>&isAdd=true"
-                                                    class="btn btn-success btn-block">Add to cart</a>
+                                                    class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>

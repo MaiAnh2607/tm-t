@@ -12,12 +12,12 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="text-center">Image</th>
-                                <th class="text-center">Product</th>
-                                <th class="text-center">Quantity</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Total Price</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">Hình ảnh</th>
+                                <th class="text-center">Sản phẩm</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-center">Giá</th>
+                                <th class="text-center">Tổng giá</th>
+                                <th class="text-center">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +49,7 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="/add-to-cart?id=<%= product.id %>&isAdd=false"
-                                            class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Remove</a>
+                                            class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Xóa</a>
                                     </td>
                                 </tr>
                                 <% }) %>
@@ -65,7 +65,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="text-right">Total (Quantity x Price)</td>
+                                        <td class="text-right">Tổng cộng (Số lượng x Giá)</td>
                                         <td class="text-center">
                                             <%= cart.reduce((total, product)=> total + (product.quantity *
                                                 product.price), 0).toFixed(2) %> $
@@ -79,24 +79,24 @@
             <div class="col mb-2">
                 <div class="row">
                     <div class="col-sm-12  col-md-6">
-                        <a href="/list-product" class="btn btn-block btn-light">Continue Shopping</a>
+                        <a href="/list-product" class="btn btn-block btn-light">Tiếp tục mua sắm</a>
                     </div>
                     <div class="col-sm-12 col-md-6 text-right">
                         <% if (cart.length===0) { %>
-                            <a href="/checkout" title="You should add at least 1 product"
-                                style="text-decoration: none;">
-                                <button class="btn btn-lg btn-block btn-success text-uppercase"
-                                    disabled>Checkout</button>
+                            <a href="/checkout" title="Bạn nên thêm ít nhất 1 sản phẩm" style="text-decoration: none;">
+                                <button class="btn btn-lg btn-block btn-success text-uppercase" disabled>Thanh
+                                    toán</button>
                             </a>
                             <% } else if (!user) { %>
-                                <a href="/checkout" title="You must log in to checkout!" style="text-decoration: none;">
-                                    <button class="btn btn-lg btn-block btn-success text-uppercase"
-                                        disabled>Checkout</button>
+                                <a href="/checkout" title="Bạn phải đăng nhập để thanh toán!"
+                                    style="text-decoration: none;">
+                                    <button class="btn btn-lg btn-block btn-success text-uppercase" disabled>Thanh
+                                        toán</button>
                                 </a>
                                 <% } else { %>
                                     <a href="/checkout" style="text-decoration: none;">
-                                        <button
-                                            class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                                        <button class="btn btn-lg btn-block btn-success text-uppercase">Thanh
+                                            toán</button>
                                     </a>
                                     <% } %>
                     </div>
