@@ -204,6 +204,12 @@ app.get('/checkout', async (request, response) => {
     response.render('checkout', { layout: false, user, cart });
 });
 
+app.post('/checkout', async (request, response) => {
+    //delete cart
+    request.session.cart = [];
+    response.redirect('/');
+});
+
 app.get('/admin/account-management', async (request, response) => {
     const cart = request.session.cart || [];
     const user = request.session.user;
