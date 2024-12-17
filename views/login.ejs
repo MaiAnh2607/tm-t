@@ -4,76 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NA Store Login</title>
+    <title>Đăng nhập</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
     <link rel="icon" type="image/png" href="/z5987265634501_379b0a680303e1e5b18f9b0dfa663206.jpg" />
-    <style>
-        body {
-            background: linear-gradient(to right, #ffecd2, #fcb69f);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background-color: #ff7e5f;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #feb47b;
-        }
-
-        .form-control:focus {
-            border-color: #ff7e5f;
-            box-shadow: 0 0 5px rgba(255, 126, 95, 0.5);
-        }
-
-        a {
-            color: #ff7e5f;
-        }
-
-        a:hover {
-            color: #feb47b;
-        }
-    </style>
+    <script src="https://kit.fontawesome.com/2e554e2698.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../fontawesome/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 
 <body>
-    <div class="login-container">
-        <h2 class="text-center mb-4">Đăng Nhập vào NA Store</h2>
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label for="username">Tên Đăng Nhập</label>
-                <input type="text" class="form-control" name="username" id="username"
-                    placeholder="Nhập tên đăng nhập của bạn">
+    <div class="sign_up">
+        <div class="sign_up_form">
+            <h1>Đăng nhập</h1>
+
+            <!-- Form Đăng Nhập -->
+            <form action="/login" method="post">
+                <p><input type="username" placeholder="Tên đăng nhập" name="username" id="username" required></p>
+                <p><input type="password" placeholder="Mật khẩu" name="password" id="password" required></p>
+                <div id="form_button">
+                    <button type="submit" id="submit">ĐĂNG NHẬP</button>
+                    <a href="#"><button type="button" id="forget">Quên mật khẩu?</button></a><br>
+                    <p><a href="/"><i class="fas fa-long-arrow-alt-left"></i> Quay lại trang chủ</a></p>
+                </div>
                 <span class="text-danger">
-                    <%= error.username %>
+                    <%= error.account %>
                 </span>
+            </form>
+
+            <div class="sign_up_with">
+                <ul id="sign_up_with">
+                    <li>Đăng nhập với</li>
+                    <li><a href="#"><i id="sign_up_with_icon1" class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i id="sign_up_with_icon2" class="fab fa-google"></i></a></li>
+                    <li><a href="#"><i id="sign_up_with_icon3" class="fab fa-twitter"></i></a></li>
+                </ul>
+                <p class="text-center mt-3">Chưa có tài khoản? <a href="/signup">Đăng ký</a></p>
             </div>
-            <div class="form-group">
-                <label for="password">Mật Khẩu</label>
-                <input type="password" class="form-control" name="password" id="password"
-                    placeholder="Nhập mật khẩu của bạn">
-                <span class="text-danger">
-                    <%= error.password %>
-                </span>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
-            <span class="text-danger">
-                <%= error.account %>
-            </span>
-        </form>
-        <p class="text-center mt-3">Chưa có tài khoản? <a href="/signup">Đăng ký ngay</a></p>
+        </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
