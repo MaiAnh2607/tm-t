@@ -51,7 +51,7 @@
                         </h4>
                         <div>
                             <p class="btn btn-danger btn-block">
-                                <%= highestPrice.price %> $
+                                <%= highestPrice.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                             </p>
                         </div>
                         <div>
@@ -86,7 +86,7 @@
                                             </h4>
                                             <div>
                                                 <p class="btn btn-danger btn-block">
-                                                    <%= product.price %> $
+                                                    <%= product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                                                 </p>
                                             </div>
                                             <div>
@@ -126,7 +126,7 @@
                                             </h4>
                                             <div>
                                                 <p class="btn btn-danger btn-block">
-                                                    <%= product.price %> $
+                                                    <%= product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                                                 </p>
                                             </div>
                                             <div>

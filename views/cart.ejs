@@ -39,12 +39,12 @@
                                     </td>
                                     <td class="text-center">
                                         <span class="text-success">
-                                            <%= product.price %> $
+                                            <%= product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                                         </span>
                                     </td>
                                     <td class="text-center">
                                         <span class="text-success">
-                                            <%= (product.price * product.quantity).toFixed(2) %> $
+                                            <%= (product.price * product.quantity).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                                         </span>
                                     </td>
                                     <td class="text-center">
@@ -68,7 +68,7 @@
                                         <td class="text-right">Tổng cộng (Số lượng x Giá)</td>
                                         <td class="text-center">
                                             <%= cart.reduce((total, product)=> total + (product.quantity *
-                                                product.price), 0).toFixed(2) %> $
+                                                product.price), 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                                         </td>
                                         <td></td>
                                     </tr>

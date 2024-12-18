@@ -72,7 +72,7 @@
                             <%= product.name %>
                         </td>
                         <td>
-                            <%= product.price %>
+                            <%= product.price.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
                         </td>
                         <td>
                             <button class="btn btn-warning btn-sm"
@@ -121,7 +121,8 @@
                         </div>
                         <div class="form-group">
                             <label for="productDescription">Mô tả</label>
-                            <textarea class="form-control" id="productDescription" name="description" required></textarea>
+                            <textarea class="form-control" id="productDescription" name="description"
+                                required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="productImage">Hình ảnh</label>
@@ -178,7 +179,8 @@
                         </div>
                         <div class="form-group">
                             <label for="editProductDescription">Mô tả</label>
-                            <textarea class="form-control" id="editProductDescription" name="description" required></textarea>
+                            <textarea class="form-control" id="editProductDescription" name="description"
+                                required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="editProductImage">Hình ảnh</label>

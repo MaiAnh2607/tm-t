@@ -75,20 +75,20 @@
                                 <%= item.name %>
                             </td>
                             <td>
-                                <%= item.price %> $
+                                <%= item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                             </td>
                             <td>
                                 <%= item.quantity %>
                             </td>
                             <td>
-                                <%= (item.price * item.quantity).toFixed(2) %> $
+                                <%= (item.price * item.quantity).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                             </td>
                         </tr>
                         <% }) %>
                 </tbody>
             </table>
             <div class="text-right font-weight-bold">
-                Tổng Giá: <%= cart.reduce((total, item)=> total + (item.price * item.quantity), 0).toFixed(2) %> $
+                Tổng Giá: <%= cart.reduce((total, item)=> total + (item.price * item.quantity), 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
             </div>
         </div>
 

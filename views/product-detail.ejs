@@ -30,7 +30,7 @@
                             <%= product.name %>
                         </h4>
                         <p class="price">
-                            <%= product.price %> $
+                            <%= product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                         </p>
                         <form method="get" action="cart.html">
                             <div class="form-group">
@@ -108,7 +108,7 @@
                                             </h4>
                                             <div>
                                                 <p class="btn btn-danger btn-block">
-                                                    <%= product.price %> $
+                                                    <%= product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %>
                                                 </p>
                                             </div>
                                             <div>
